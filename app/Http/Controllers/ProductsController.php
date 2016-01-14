@@ -7,19 +7,29 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Paginator;
 
 class ProductsController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
+
+
     public function index()
     {
         //echo 'products list show here';
-        $categoryAll = Category::all()->toArray();
-        return view('Products.category_list',['cateogyList'=>$categoryAll]);
+        $categoryAll = Category::getAllCategories();
+        return view('Products.category_list',['categoryList'=>$categoryAll]);
     }
 
     /**
@@ -30,6 +40,8 @@ class ProductsController extends Controller
     public function create()
     {
         //
+
+        return view('Products.create');
     }
 
     /**
@@ -101,4 +113,6 @@ class ProductsController extends Controller
         }
 
     }
+
+
 }

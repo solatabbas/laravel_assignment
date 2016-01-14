@@ -32,4 +32,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /*
+     * category added by single user
+     *
+    */
+
+    public function Categories()
+    {
+        return $this->hasMany('App\Category');
+    }
+
+    /*
+     *  products added by single user
+     */
+
+    public function Products()
+    {
+        return $this->hasMany('App\Products');
+    }
+
 }
